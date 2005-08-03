@@ -7,7 +7,7 @@ WriteMakefile(
     VERSION_FROM      => 'lib/warnings/DynamicScope.pm', # finds $VERSION
     PREREQ_PM         => {
 						  Test::Exception	=> 0.2,
-						  Symbol::Table		=> 1.03,
+						  Symbol::Values	=> 1.03,
 						 },
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/warnings/DynamicScope.pm', # retrieve abstract from module

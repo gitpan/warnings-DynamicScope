@@ -1,7 +1,7 @@
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl warnings-DynamicScope.t'
 
-# Revision: $Id: warnings-DynamicScope.t,v 1.3 2005/08/03 21:43:07 kay Exp $
+# Revision: $Id: warnings-DynamicScope.t,v 1.4 2005/08/03 23:30:25 kay Exp $
 
 #########################
 
@@ -458,3 +458,30 @@ dies_ok { $^W{unknown_cat} = 1 } 'Bad category(die)';
 ok($@ =~ /^Unknown warnings category 'unknown_cat'/,
    'Bad category(error message)');
 
+# --------------------------------------------------------------------------
+# Test as pragma
+
+my $dummy;
+my $uninit1;
+
+use warnings FATAL => 'uninitialized';
+
+use warnings;
+
+dies_ok { $dummy = $uninit1 . "" } "pragma";
+
+BEGIN {
+	$^W{uninitialized} = 0;
+}
+
+my $uninit2;
+lives_ok { $dummy = $uninit2 . "" } "pragma";
+
+BEGIN {
+	$^W{uninitialized} = 1;
+}
+
+my $uninit3;
+dies_ok { $dummy = $uninit3 . "" } "pragma";
+
+no warnings FATAL => 'uninitialized';

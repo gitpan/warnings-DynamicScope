@@ -4,12 +4,15 @@ package warnings::DynamicScope;
 
 # DynamicScope.pm
 # ------------------------------------------------------------------------
-# Revision: $Id: DynamicScope.pm,v 1.3 2005/08/03 22:25:43 kay Exp $
+# Revision: $Id: DynamicScope.pm,v 1.5 2005/08/03 23:32:35 kay Exp $
 # Written by Keitaro Miyazaki<KHC03156@nifty.ne.jp>
 # Copyright 2005 Keitaro Miyazaki All Rights Reserved.
 
 # HISTORY
 # ------------------------------------------------------------------------
+# 2005-08-04 Version 1.0.1
+#            - Modefied POD document.
+#            - Added a few tests.
 # 2005-08-04 Version 1.0.0
 #            - Initial version.
 
@@ -17,8 +20,8 @@ use 5.008;
 use strict;
 use warnings;
 
-our $VERSION = '1.00';
-our $REVISION = '$Id: DynamicScope.pm,v 1.3 2005/08/03 22:25:43 kay Exp $';
+our $VERSION = '1.01';
+our $REVISION = '$Id: DynamicScope.pm,v 1.5 2005/08/03 23:32:35 kay Exp $';
 
 #-------------------------------------------------------------------------
 # Base module(Tied Hash)
@@ -218,9 +221,17 @@ warnings::DynamicScope - Provides warning categories in dynamic scope.
 =head1 DESCRIPTION
 
 This module provides warning categories in dynamic scope
-through the variable "%^W".
+through the special variable "%^W".
 
-You can use it like special variable "$^W":
+=over 4
+
+=item VARIABLES
+
+This modules brings new special variable called "%^W".
+Yes, it is very similar to special variable "$^W"
+in appearance, but these are different things.
+
+But you can use it like special variable "$^W":
 
  require warnings::DynamicScope;
 
@@ -250,8 +261,6 @@ This code prints:
  Don't do it!!
 
 That's all.
-
-=over 4
 
 =item OBJECTIVE
 
@@ -301,13 +310,8 @@ I thought this comes from nature of these function that
 these functions uses warnings information in static scope.
 (They gets static scope information from stack of caller function.)
 
-So, I started write this module.
-
-=item VARIABLES
-
-This modules brings new special variable called "%^W".
-Yes, it is very similar to special variable "$^W"
-in appearance, but these are different things.
+So, I started write this module to make warnings categories
+work with dynamic scope.
 
 =back
 
