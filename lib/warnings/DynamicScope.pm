@@ -4,12 +4,15 @@ package warnings::DynamicScope;
 
 # DynamicScope.pm
 # ------------------------------------------------------------------------
-# Revision: $Id: DynamicScope.pm,v 1.11 2005/08/07 11:38:56 kay Exp $
-# Written by Keitaro Miyazaki<KHC03156@nifty.ne.jp>
+# Revision: $Id: DynamicScope.pm,v 1.13 2005/08/10 08:12:27 kay Exp $
+# Written by Keitaro Miyazaki<kmiyazaki@cpan.org>
 # Copyright 2005 Keitaro Miyazaki All Rights Reserved.
 
 # HISTORY
 # ------------------------------------------------------------------------
+# 2005-08-10 Version 1.03
+#            - Fixed a bug the value of $^W was not set properly in
+#              BEGIN block.
 # 2005-08-07 Version 1.02
 #            - Defined new package variable named "$DYNAMIC_W_BITS".
 #              The tied hash "%^W" no longer accesses to the variable
@@ -31,8 +34,8 @@ use 5.008;
 use strict;
 use warnings;
 
-our $VERSION  = '1.02';
-our $REVISION = '$Id: DynamicScope.pm,v 1.11 2005/08/07 11:38:56 kay Exp $';
+our $VERSION  = '1.03';
+our $REVISION = '$Id: DynamicScope.pm,v 1.13 2005/08/10 08:12:27 kay Exp $';
 our $DEBUG    = 0;
 
 use Symbol::Values 'symbol';
@@ -171,8 +174,8 @@ sub STORE {
 
 	# Set value of $^W if necessary.
 	#
-	if ($key eq 'all' && !$is_pragma) {
-		${$r_WARNINGS} = $value;
+	if ($key eq 'all') {
+		${$r_WARNINGS} = $value ? 1 : 0;
 	}
 
 	if ($is_pragma) {

@@ -1,7 +1,11 @@
 Revision history for Perl extension warnings::DynamicScope.
-$Id: Changes,v 1.7 2005/08/07 11:38:55 kay Exp $
+$Id: Changes,v 1.8 2005/08/10 08:12:27 kay Exp $
 
-1.02  
+1.03  Wed Aug 10 2005
+    - Fixed a bug the value of $^W was not set properly in
+      BEGIN block.
+
+1.02  Sun Aug 07 2005
     - Defined new package variable named "$DYNAMIC_W_BITS".
       The tied hash "%^W" no longer accesses to the variable
       "${^WARNING_BITS}" unless it is accessed in BEGIN block.
@@ -13,11 +17,10 @@ $Id: Changes,v 1.7 2005/08/07 11:38:55 kay Exp $
       synchronized with the value of "$^W{all}".
     - Made "%^W" realize "-W" and "-X" command line switches.
 
-1.01  Thu Aug  4
+1.01  Thu Aug  04 2005
     - Modefied POD document.
     - Added a few tests.
 
-1.00  Thu Aug  4
+1.00  Thu Aug  04 2005
     - original version.
-
 

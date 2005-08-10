@@ -1,7 +1,8 @@
+#!perl
 # Before `make install' is performed this script should be runnable with
 # `make test'. After `make install' it should work as `perl warnings-DynamicScope.t'
 
-# Revision: $Id: warnings-DynamicScope.t,v 1.9 2005/08/07 11:59:17 kay Exp $
+# Revision: $Id: warnings-DynamicScope.t,v 1.10 2005/08/10 08:12:27 kay Exp $
 
 #########################
 
@@ -93,6 +94,10 @@ BEGIN {
 
 	$^W = 1;
 }
+BEGIN {
+	ok(${$warnings::DynamicScope::WARNINGS_HASH::r_WARNINGS} == 1,
+	   'lexical: lexical set: transfer $^W => original $^W, 1');
+}
 
 tie *{main::stderr}, 'Handle::String';
 lex_warnif('all');
@@ -117,6 +122,10 @@ BEGIN {
 
 	$^W = 0;
 }
+BEGIN {
+	ok(${$warnings::DynamicScope::WARNINGS_HASH::r_WARNINGS} == 0,
+	   'lexical: lexical set: transfer $^W => original $^W, 0');
+}
 
 tie *{main::stderr}, 'Handle::String';
 lex_warnif('all');
@@ -134,9 +143,13 @@ BEGIN {
 	ok($val == 2, 'lexical: lexical set: $^W{all} = FATAL');
 
 	$val = $^W;
-	ok($val == 2, 'lexical: lexical set: transfer $^W{all} => $^W, FATAL => 1');
+	ok($val == 2, 'lexical: lexical set: transfer $^W{all} => oritigal $^W, FATAL => 1');
 
 	$^W{all} = 'FATAL';
+}
+BEGIN {
+	ok(${$warnings::DynamicScope::WARNINGS_HASH::r_WARNINGS} == 1,
+	   'lexical: lexical set: transfer $^W{all} => $^W, FATAL => 1');
 }
 
 eval { lex_warnif('all') };
@@ -155,6 +168,10 @@ BEGIN {
 	ok($val == 1, 'lexical: lexical set: transfer $^W{all} => $^W, 1');
 
 	$^W{all} = 1;
+}
+BEGIN {
+	ok(${$warnings::DynamicScope::WARNINGS_HASH::r_WARNINGS} == 1,
+	   'lexical: lexical set: transfer $^W{all} => original $^W, 1');
 }
 tie *{main::stderr}, 'Handle::String';
 lex_warnif('all');
@@ -175,6 +192,10 @@ BEGIN {
 	ok($val == 0, 'lexical: lexical set: transfer $^W{all} => $^W, 0');
 
 	$^W{all} = 0;
+}
+BEGIN {
+	ok(${$warnings::DynamicScope::WARNINGS_HASH::r_WARNINGS} == 0,
+	   'lexical: lexical set: transfer $^W{all} => original $^W, 0');
 }
 tie *{main::stderr}, 'Handle::String';
 lex_warnif('all');

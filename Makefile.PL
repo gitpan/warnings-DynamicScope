@@ -1,5 +1,6 @@
 use 5.008;
 use ExtUtils::MakeMaker;
+#$Id: Makefile.PL,v 1.6 2005/08/08 11:50:01 kay Exp $
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
 WriteMakefile(
@@ -11,5 +12,5 @@ WriteMakefile(
 						 },
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/warnings/DynamicScope.pm', # retrieve abstract from module
-       AUTHOR         => 'Keitaro Miyazaki <KHC03156@nifty.ne.jp>') : ()),
+       AUTHOR         => 'Keitaro Miyazaki <kmiyazaki@cpan.org>') : ()),
 );
