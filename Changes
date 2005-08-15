@@ -1,5 +1,8 @@
 Revision history for Perl extension warnings::DynamicScope.
-$Id: Changes,v 1.8 2005/08/10 08:12:27 kay Exp $
+$Id: Changes,v 1.9 2005/08/15 15:53:59 kay Exp $
+
+1.04  Wed Aug 15 2005
+    - Added Test::Warn to PREREQ_PM in Makefile.PL
 
 1.03  Wed Aug 10 2005
     - Fixed a bug the value of $^W was not set properly in

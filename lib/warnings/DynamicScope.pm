@@ -4,12 +4,13 @@ package warnings::DynamicScope;
 
 # DynamicScope.pm
 # ------------------------------------------------------------------------
-# Revision: $Id: DynamicScope.pm,v 1.13 2005/08/10 08:12:27 kay Exp $
+# Revision: $Id: DynamicScope.pm,v 1.14 2005/08/15 15:53:59 kay Exp $
 # Written by Keitaro Miyazaki<kmiyazaki@cpan.org>
 # Copyright 2005 Keitaro Miyazaki All Rights Reserved.
 
 # HISTORY
 # ------------------------------------------------------------------------
+# 2005-08-15 Version 1.04
 # 2005-08-10 Version 1.03
 #            - Fixed a bug the value of $^W was not set properly in
 #              BEGIN block.
@@ -34,8 +35,8 @@ use 5.008;
 use strict;
 use warnings;
 
-our $VERSION  = '1.03';
-our $REVISION = '$Id: DynamicScope.pm,v 1.13 2005/08/10 08:12:27 kay Exp $';
+our $VERSION  = '1.04';
+our $REVISION = '$Id: DynamicScope.pm,v 1.14 2005/08/15 15:53:59 kay Exp $';
 our $DEBUG    = 0;
 
 use Symbol::Values 'symbol';
